@@ -10,7 +10,15 @@ The rest of this document is intended for Petmate developers.
 
 These instructions assume Node.js v18+ and npm. `yarn` is not required.
 
-### Install dependencies
+### System dependencies
+
+Building a `.deb` package requires `fakeroot` and `dpkg-dev`:
+
+```bash
+sudo apt install fakeroot dpkg-dev
+```
+
+### Install Node dependencies
 
 ```bash
 npm install
@@ -31,7 +39,7 @@ This starts the React dev server and launches Electron pointing at it.
 First build the production React bundle, then run electron-builder:
 
 ```bash
-NODE_OPTIONS=--openssl-legacy-provider npm run build
+npm run build
 npm run dist-linux
 ```
 
@@ -40,5 +48,5 @@ This produces a `.deb` package at `dist/petmate_<version>_amd64.deb`.
 To install it:
 
 ```bash
-sudo apt install ./dist/petmate_0.8.4_amd64.deb
+sudo apt install ./dist/petmate_*_amd64.deb
 ```
